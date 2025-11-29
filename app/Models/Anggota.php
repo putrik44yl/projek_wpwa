@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,18 +18,22 @@ class Anggota extends Model
         'no_hp',
         'tanggal_gabung',
         'status',
+
+        // EXTRA FIELDS
+        'foto',
+        'bio',
     ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELASI
+    |--------------------------------------------------------------------------
+    */
 
     // Relasi ke User
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Relasi ke Pengurus
-    public function pengurus()
-    {
-        return $this->hasOne(Pengurus::class);
     }
 
     // Relasi ke Kehadiran
@@ -45,31 +50,40 @@ class Anggota extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Accessor untuk Status
+    | ACCESSOR STATUS
     |--------------------------------------------------------------------------
     */
 
-    // Label sederhana
     public function getStatusLabelAttribute()
     {
-        $status = strtolower($this->status);
-
-        if ($status === 'aktif' || $status === '1') {
+        if (strtolower($this->status) === 'aktif' || $this->status == '1') {
             return 'Aktif';
         }
 
         return 'Tidak Aktif';
     }
 
-    // Badge HTML siap pakai
     public function getStatusBadgeAttribute()
     {
-        $status = strtolower($this->status);
-
-        if ($status === 'aktif' || $status === '1') {
+        if (strtolower($this->status) === 'aktif' || $this->status == '1') {
             return '<span class="badge bg-primary">Aktif</span>';
         }
 
-        return '<span class="badge bg-info">Tidak Aktif</span>';
+        return '<span class="badge bg-secondary">Tidak Aktif</span>';
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSOR FOTO
+    |--------------------------------------------------------------------------
+    */
+
+    public function getFotoUrlAttribute()
+    {
+        if (!$this->foto) {
+            return asset('default/user.png'); // default avatar
+        }
+
+        return asset('storage/' . $this->foto);
     }
 }

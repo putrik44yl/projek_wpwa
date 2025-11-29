@@ -22,13 +22,13 @@
         <div class="layout-container">
 
             <!-- SIDEBAR -->
-            @include('layouts.components.sidebar_pengurus')
+            @include('layouts.components.sidebar_anggota')
             <!-- / SIDEBAR -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- NAVBAR -->
-                @include('layouts.components.navbar_pengurus')
+                @include('layouts.components.navbar_anggota')
                 <!-- / NAVBAR -->
 
                 <!-- Content wrapper -->

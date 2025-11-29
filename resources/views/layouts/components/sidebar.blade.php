@@ -12,6 +12,13 @@
         </a>
     </li>
 
+        <li class="menu-item {{ request()->is('admin/galeri*') ? 'active open' : '' }}">
+            <a href="{{ route('admin.galeri.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-image"></i>
+                <div>Galeri</div>
+            </a>
+        </li>
+
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Manajemen Data</span>
     </li>

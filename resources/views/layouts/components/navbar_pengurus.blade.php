@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                                    <small class="text-muted">Anggota</small>
+                                    <small class="text-muted">Pengurus</small>
                                 </div>
                             </div>
                         </a>
